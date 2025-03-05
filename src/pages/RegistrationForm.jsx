@@ -39,7 +39,7 @@ const RegistrationForm = () => {
       }
 
       // Proceed with registration if username and email are not found
-      const response = await fetch("http://localhost:3000/users", {
+      const response = await fetch("https://eco-engage-server-1.onrender.com/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

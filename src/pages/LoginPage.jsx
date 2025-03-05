@@ -16,7 +16,7 @@ const LoginPage = () => {
 
     try {
       // Fetch users to check if username exists
-      const response = await fetch(`http://localhost:3000/users?username=${formData.username}`);
+      const response = await fetch(`https://eco-engage-server-1.onrender.com/users?username=${formData.username}`);
       const users = await response.json();
 
       if (users.length === 0) {
