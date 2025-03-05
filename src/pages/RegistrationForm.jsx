@@ -21,7 +21,7 @@ const RegistrationForm = () => {
 
     try {
       // Check if username already exists
-      const checkUsernameResponse = await fetch(`http://localhost:3000/users?username=${formData.username}`);
+      const checkUsernameResponse = await fetch(`https://eco-engage-server-1.onrender.com/users?username=${formData.username}`);
       const existingUsernames = await checkUsernameResponse.json();
 
       if (existingUsernames.length > 0) {
@@ -30,7 +30,7 @@ const RegistrationForm = () => {
       }
 
       // Check if email already exists
-      const checkEmailResponse = await fetch(`http://localhost:3000/users?email=${formData.email}`);
+      const checkEmailResponse = await fetch(`https://eco-engage-server-1.onrender.com/users?email=${formData.email}`);
       const existingEmails = await checkEmailResponse.json();
 
       if (existingEmails.length > 0) {
