@@ -9,7 +9,7 @@ function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3000/users")
+    fetch("https://eco-engage-server-1.onrender.com/users")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch user data");
@@ -32,7 +32,7 @@ function Dashboard() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/users/${id}`, {
+      const response = await fetch(`https://eco-engage-server-1.onrender.com/users/${id}`, {
         method: "DELETE",
       });
 
