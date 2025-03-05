@@ -32,7 +32,7 @@
   .submit-button {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background:  #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
@@ -42,6 +42,32 @@
   }
   
   .submit-button:hover {
-    background-color: #0056b3;
+    background: #2E7D32;
   }
+  /* Login Section */
+.login-section {
+  margin-top: 15px;
+}
+
+.login-link {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.login-button {
+  width: 100%;
+  background:  #4CAF50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.login-button:hover {
+  background: #28a745;
+}
   
