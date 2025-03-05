@@ -1,10 +1,26 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
 
-const navLinks = ["Home", "Services", "About US", "Contact US"];
+const navLinks = ["Home", "Services", "AboutUS", "ContactUS"];
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Check login status when component mounts
+  useEffect(() => {
+    const user = localStorage.getItem("user"); // Assume user data is stored in localStorage
+    setIsLoggedIn(!!user); // Convert to boolean
+  }, []);
+
+  // Logout function
+  const handleLogout = () => {
+    localStorage.removeItem("user"); // Remove user data
+    setIsLoggedIn(false);
+    navigate("/"); // Redirect to home page
+  };
+
   return (
     <nav className="navbar">
       <h1 className="logo">EcoTech</h1>
@@ -21,7 +37,15 @@ const Navbar = () => {
         ))}
       </ul>
       <div className="nav-buttons">
-        <button className="login-btn" >Login/Signup</button>
+        {!isLoggedIn ? (
+          <button onClick={() => navigate("/register")} className="login-btn">
+            Register/Signup
+          </button>
+        ) : (
+          <button onClick={handleLogout} className="logout-btn">
+            Logout
+          </button>
+        )}
         <button className="cart-btn">🛒</button>
       </div>
     </nav>
