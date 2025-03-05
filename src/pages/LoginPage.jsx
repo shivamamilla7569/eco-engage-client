@@ -15,7 +15,6 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      // Fetch users to check if username exists
       const response = await fetch(`https://eco-engage-server-1.onrender.com/users?username=${formData.username}`);
       const users = await response.json();
 
@@ -25,8 +24,7 @@ const LoginPage = () => {
       }
 
       const user = users[0];
-      
-      // Validate password
+
       if (user.password !== formData.password) {
         setMessage("Incorrect password. Please try again.");
         return;
@@ -72,10 +70,14 @@ const LoginPage = () => {
               required
             />
           </div>
-          <button type="submit" className="button">
-            Login
-          </button>
+          <button type="submit" className="button">Login</button>
         </form>
+
+        {/* Register Section */}
+        <div className="register-section">
+          <p>Don't have an account? <span className="register-link" onClick={() => navigate("/register")}>Register here</span></p>
+          <button className="register-button" onClick={() => navigate("/register")}>Register</button>
+        </div>
       </div>
     </div>
   );

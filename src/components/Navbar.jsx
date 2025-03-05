@@ -38,7 +38,7 @@ const Navbar = () => {
       </ul>
       <div className="nav-buttons">
         {!isLoggedIn ? (
-          <button onClick={() => navigate("/register")} className="login-btn">
+          <button onClick={() => navigate("/login")} className="login-btn">
             Register/Signup
           </button>
         ) : (

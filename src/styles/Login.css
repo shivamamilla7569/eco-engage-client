@@ -54,7 +54,7 @@ body {
   .button {
     width: 100%;
     padding: 10px;
-    background: #007bff;
+    background:  #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
@@ -63,5 +63,31 @@ body {
   }
   
   .button:hover {
-    background: #0056b3;
+    background: #2E7D32;
   }
+/* Register Section */
+.register-section {
+  margin-top: 15px;
+}
+
+.register-link {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.register-button {
+  width: 100%;
+  background:  #4CAF50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.register-button:hover {
+  background: #2E7D32;
+}

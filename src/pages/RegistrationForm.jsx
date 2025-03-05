@@ -10,11 +10,11 @@ const RegistrationForm = () => {
   });
   const [message, setMessage] = useState('');
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,43 +62,48 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className='container'>
-      
-    <div className="form-container">
-      <h2>Registration Form</h2>
-      {message && <p className="message">{message}</p>}
-      <form onSubmit={handleSubmit}>
-        <input 
-          type="text" 
-          name="username" 
-          placeholder="Username" 
-          value={formData.username} 
-          onChange={handleChange} 
-          className="input-field" 
-          required
+    <div className="container">
+      <div className="form-container">
+        <h2>Registration Form</h2>
+        {message && <p className="message">{message}</p>}
+        <form onSubmit={handleSubmit}>
+          <input 
+            type="text" 
+            name="username" 
+            placeholder="Username" 
+            value={formData.username} 
+            onChange={handleChange} 
+            className="input-field" 
+            required
           />
-        <input 
-          type="email" 
-          name="email" 
-          placeholder="Email" 
-          value={formData.email} 
-          onChange={handleChange} 
-          className="input-field" 
-          required
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Email" 
+            value={formData.email} 
+            onChange={handleChange} 
+            className="input-field" 
+            required
           />
-        <input 
-          type="password" 
-          name="password" 
-          placeholder="Password" 
-          value={formData.password} 
-          onChange={handleChange} 
-          className="input-field" 
-          required
+          <input 
+            type="password" 
+            name="password" 
+            placeholder="Password" 
+            value={formData.password} 
+            onChange={handleChange} 
+            className="input-field" 
+            required
           />
-        <button type="submit" className="submit-button">Register</button>
-      </form>
+          <button type="submit" className="submit-button">Register</button>
+        </form>
+
+        {/* Login Redirect Section */}
+        <div className="login-section">
+          <p>Already have an account? <span className="login-link" onClick={() => navigate("/login")}>Login</span></p>
+          <button className="login-button" onClick={() => navigate("/login")}>Login</button>
+        </div>
+      </div>
     </div>
-          </div>
   );
 };
 
