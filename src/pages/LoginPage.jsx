@@ -76,7 +76,6 @@ const LoginPage = () => {
         {/* Register Section */}
         <div className="register-section">
           <p>Don't have an account? <span className="register-link" onClick={() => navigate("/register")}>Register here</span></p>
-          <button className="register-button" onClick={() => navigate("/register")}>Register</button>
         </div>
       </div>
     </div>

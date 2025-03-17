@@ -38,7 +38,7 @@ const RegistrationForm = () => {
         return;
       }
 
-      // Proceed with registration if username and email are not found
+      // Proceed with registration
       const response = await fetch("https://eco-engage-server-1.onrender.com/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -46,7 +46,7 @@ const RegistrationForm = () => {
       });
 
       if (response.ok) {
-        setMessage("Registration successful!");
+        setMessage("Registration successful! Redirecting to login...");
         setFormData({ username: "", email: "", password: "" });
 
         setTimeout(() => {
@@ -96,12 +96,6 @@ const RegistrationForm = () => {
           />
           <button type="submit" className="submit-button">Register</button>
         </form>
-
-        {/* Login Redirect Section */}
-        <div className="login-section">
-          <p>Already have an account? <span className="login-link" onClick={() => navigate("/login")}>Login</span></p>
-          <button className="login-button" onClick={() => navigate("/login")}>Login</button>
-        </div>
       </div>
     </div>
   );
