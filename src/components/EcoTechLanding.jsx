@@ -3,7 +3,6 @@ import "../styles/EcoTechLanding.css"; // Import external CSS file
 import Navbar from "./Navbar";
 import TrustSection from "./TrustSection";
 import Button from "./Button";
-import About from "./About";
 
 const EcoTechLanding = () => {
   return (
