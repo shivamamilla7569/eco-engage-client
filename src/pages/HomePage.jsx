@@ -14,7 +14,7 @@ const HomePage = () => {
         <Link to="/register" className="cta-button">Get Started</Link>
       </div>
       <div className="home-image">
-        <img src="/assets/eco-friendly-world.png" alt="Eco Engage" />
+        <img src="/public/eco1.jpeg" alt="Eco Engage" />
       </div>
     </div>
   );

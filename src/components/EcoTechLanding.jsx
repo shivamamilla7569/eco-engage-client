@@ -22,7 +22,7 @@ const EcoTechLanding = () => {
           <Button displayedtext="Join the Movement"/>
         </div>
         <img
-          src="https://source.unsplash.com/400x400/?earth,eco" 
+          src="/public/eco2.jpeg" 
           alt="EcoTech Globe"
           className="hero-image"
           />
