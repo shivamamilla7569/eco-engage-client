@@ -17,7 +17,7 @@ const AboutUs = () => {
       </div>
 
       <div className="aboutus-image">
-        <img src="/assets/eco-friendly-world.png" alt="Eco Engage Team" />
+        <img src="/public/eco3.jpeg" alt="Eco Engage Team" />
       </div>
     </div>
   );
