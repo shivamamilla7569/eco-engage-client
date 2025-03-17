@@ -1,66 +1,76 @@
-.contact-bin{
-    background: linear-gradient(to right, #39e75f, #ffffff);
-}
+/* Contact Section */
 .contact-container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 30px;
-    text-align: center;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to right, #39e75f, #ffffff);
-    
-  }
-  
-  h2 {
-    font-size: 2rem;
-    color: #02475e;
-  }
-  
-  p {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 20px;
-  }
-  
+  width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(to right, #39e75f, #b0f3d1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.contact-container h2 {
+  font-size: 36px;
+  color: #004d00;
+}
+
+.highlight {
+  color: #006400;
+}
+
+.contact-container p {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Form Styling */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  border: 2px solid #004d00;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #333;
+}
+
+.contact-form textarea {
+  height: 120px;
+  resize: none;
+}
+
+/* Submit Button */
+.cta-btn {
+  background: linear-gradient(135deg, #4CAF50, #2E7D32);
+  color: white;
+  padding: 14px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
   .contact-form {
-    text-align: left;
+      width: 90%;
   }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .submit-button {
-    width: 100%;
-    padding: 12px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: white;
-    background: #0288d1;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-  }
-  
-  .submit-button:hover {
-    background: #02669b;
-  }
-  
+}

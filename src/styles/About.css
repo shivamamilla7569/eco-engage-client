@@ -1,55 +1,67 @@
+/* Full Page Container */
 .about-container {
+    width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient(to right, #39e75f, #b0f3d1);
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    background: linear-gradient(to right, #a0e07d, #ffffff);
-    padding: 50px 80px;
-    border-radius: 10px;
-    gap: 40px;
+    align-items: center;
 }
 
-.about-image {
-    flex: 1;
-    max-width: 400px;
+/* About Section */
+.about-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    max-width: 1200px;
 }
 
-.about-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 50% 0 0 50%; /* Stylish curved effect */
-    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
-}
-
+/* Text Section */
 .about-text {
-    flex: 1;
-    max-width: 500px;
+    max-width: 600px;
+    text-align: left;
 }
 
 .about-text h2 {
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 15px;
+    font-size: 48px;
+    color: #004d00;
+    font-weight: bold;
+}
+
+.highlight {
+    color: #006400;
 }
 
 .about-text p {
-    font-size: 16px;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 10px;
+    font-size: 20px;
+    color: #333;
+    margin: 20px 0;
 }
 
-.learn-more-btn {
-    background: none;
-    border: 2px solid #333;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    border-radius: 5px;
+/* About Image */
+.about-image {
+    width: 450px;
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.15);
 }
 
-.learn-more-btn:hover {
-    background: #28a745;
-    color: white;
-    border-color: #28a745;
+/* Responsive Design */
+@media (max-width: 900px) {
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-text {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .about-image {
+        margin-top: 20px;
+        width: 80%;
+    }
 }

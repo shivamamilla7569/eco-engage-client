@@ -1,34 +1,54 @@
-import React from "react";
-import "../styles/ContactUs.css"; // Import styles
+import React, { useState } from "react";
+import "../styles/ContactUs.css"; // Import CSS for styling
 
 const ContactUs = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Message sent successfully!");
+    setFormData({ name: "", email: "", message: "" }); // Reset form
+  };
+
   return (
-    <div className="contact-bin">
     <div className="contact-container">
-      <h2>Contact Us</h2>
-      <p>We'd love to hear from you! Feel free to reach out to us.</p>
+      <h2>Contact <span className="highlight">EcoTech Team</span></h2>
+      <p>Have questions or need support? Get in touch with us.</p>
 
-      <div className="contact-form">
-        <form>
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input type="text" id="name" placeholder="Enter your name" required />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" placeholder="Enter your email" required />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="message">Message</label>
-            <textarea id="message" rows="4" placeholder="Write your message..." required></textarea>
-          </div>
-
-          <button type="submit" className="submit-button">Send Message</button>
-        </form>
-      </div>
-    </div>
+      <form className="contact-form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          value={formData.message}
+          onChange={handleChange}
+          required
+        ></textarea>
+        <button type="submit" className="cta-btn">Send Message</button>
+      </form>
     </div>
   );
 };
