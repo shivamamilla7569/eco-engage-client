@@ -5,15 +5,41 @@ import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import RegistrationForm from './pages/RegistrationForm';
 import LoginPage from './pages/LoginPage';
-import Dashboard from './pages/Dashboard';
 import Service from './pages/Service';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
+import EcoEngageDashboard from './pages/EcoEngageDashboard';
+import VolunteerOpportunities from './pages/VolunteerOpportunities';
+import EnvironmentalAwareness from './pages/EnvironmentalAwareness';
+import EcoFriendlyTransport from './pages/EcoFriendlyTransport';
+import ElectricVehicles from './pages/ElectricVehicles';
+import PublicTransport from './pages/PublicTransport';
+import BikingWalking from './pages/BikingWalking';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element:<><Navbar/><LandingPage /></>,
+    
+  },
+  {
+    path: "/eco-friendly-transport",
+    element:<><EcoFriendlyTransport/></>,
+    
+  },
+  {
+    path: "/publictransport",
+    element:<><PublicTransport/></>,
+    
+  },
+  {
+    path: "/bikingwalking",
+    element:<><BikingWalking/></>,
+    
+  },
+  {
+    path: "/electricvehicles",
+    element:<><ElectricVehicles/></>,
     
   },  
   {
@@ -33,7 +59,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element:<><Navbar/><Dashboard/></>,
+    element:<><EcoEngageDashboard/></>,
+  },
+  {
+    path: "/hub",
+    element:<><EnvironmentalAwareness/></>,
   },
   {
     path: "/services",
@@ -42,6 +72,10 @@ const router = createBrowserRouter([
   {
     path: "/aboutus",
     element:<><Navbar/><AboutUs/></>,
+  },
+  {
+    path: "/volunteer",
+    element:<><VolunteerOpportunities/></>,
   },
   {
     path: "/contactus",
