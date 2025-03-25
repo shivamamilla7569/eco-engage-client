@@ -9,21 +9,18 @@ function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://eco-engage-server-1.onrender.com/users")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch user data");
-        }
-        return response.json();
-      })
-      .then((data) => {
+    const fetchUsers = async () => {
+      try {
+        const { data } = await axios.get("https://eco-engage-server-1.onrender.com/users");
         setUsers(data);
+      } catch (error) {
+        setError(error.response?.data?.message || "Failed to fetch user data");
+      } finally {
         setLoading(false);
-      })
-      .catch((error) => {
-        setError(error.message);
-        setLoading(false);
-      });
+      }
+    };
+  
+    fetchUsers();
   }, []);
 
   const handleUpdate = (user) => {
@@ -32,17 +29,12 @@ function Dashboard() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`https://eco-engage-server-1.onrender.com/users/${id}`, {
-        method: "DELETE",
-      });
-
-      if (response.ok) {
-        setUsers(users.filter((user) => user.id !== id));
-      } else {
-        throw new Error("Failed to delete user");
-      }
+      await axios.delete(`https://eco-engage-server-1.onrender.com/users/${id}`);
+  
+      // Update state after successful deletion
+      setUsers(users.filter((user) => user.id !== id));
     } catch (error) {
-      setError(error.message);
+      setError(error.response?.data?.message || "Failed to delete user");
     }
   };
 
