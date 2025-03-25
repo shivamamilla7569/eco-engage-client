@@ -20,61 +20,62 @@ const RegistrationForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      // Check if username already exists
-      const checkUsernameResponse = await fetch(
-        `https://eco-engage-server-1.onrender.com/users?username=${formData.username}`
-      );
-      const existingUsernames = await checkUsernameResponse.json();
+  try {
+    // Check if username already exists
+    const { data: existingUsernames } = await axios.get(
+      "https://eco-engage-server-1.onrender.com/users",
+      { params: { username: formData.username } }
+    );
 
-      if (existingUsernames.length > 0) {
-        setMessage("Username is already taken. Please choose a different username.");
-        return;
-      }
+    if (existingUsernames.length > 0) {
+      setMessage("Username is already taken. Please choose a different username.");
+      return;
+    }
 
-      // Check if email already exists
-      const checkEmailResponse = await fetch(
-        `https://eco-engage-server-1.onrender.com/users?email=${formData.email}`
-      );
-      const existingEmails = await checkEmailResponse.json();
+    // Check if email already exists
+    const { data: existingEmails } = await axios.get(
+      "https://eco-engage-server-1.onrender.com/users",
+      { params: { email: formData.email } }
+    );
 
-      if (existingEmails.length > 0) {
-        setMessage("Email is already registered. Please use a different email.");
-        return;
-      }
+    if (existingEmails.length > 0) {
+      setMessage("Email is already registered. Please use a different email.");
+      return;
+    }
 
-      // Proceed with registration
-      const response = await fetch("https://eco-engage-server-1.onrender.com/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+    // Proceed with registration
+    const response = await axios.post(
+      "https://eco-engage-server-1.onrender.com/users",
+      formData, // No need to stringify; Axios handles it automatically
+      { headers: { "Content-Type": "application/json" } }
+    );
+
+    if (response.status === 201 || response.status === 200) {
+      setMessage("Registration successful! Redirecting to login...");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        username: "",
+        email: "",
+        dateOfBirth: "",
+        gender: "",
+        password: "",
       });
 
-      if (response.ok) {
-        setMessage("Registration successful! Redirecting to login...");
-        setFormData({
-          firstName: "",
-          lastName: "",
-          username: "",
-          email: "",
-          dateOfBirth: "",
-          gender: "",
-          password: "",
-        });
-
-        // ✅ Redirect Immediately After Registration
-        navigate("/login");
-      } else {
-        setMessage("Error registering user.");
-      }
-    } catch (error) {
-      setMessage("An error occurred. Please try again.");
-      console.error("Error:", error);
+      // ✅ Redirect Immediately After Registration
+      navigate("/login");
+    } else {
+      setMessage("Error registering user.");
     }
-  };
+  } catch (error) {
+    setMessage("An error occurred. Please try again.");
+    console.error("Error:", error);
+  }
+};
 
   return (
     <div className="container">

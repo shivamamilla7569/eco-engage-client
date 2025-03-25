@@ -13,23 +13,27 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      const response = await fetch(`https://eco-engage-server-1.onrender.com/users?username=${formData.username}`);
-      const users = await response.json();
-
+      const response = await axios.get(
+        `https://eco-engage-server-1.onrender.com/users`,
+        { params: { username: formData.username } } // Axios way to pass query params
+      );
+  
+      const users = response.data; // Axios auto-parses JSON
+  
       if (users.length === 0) {
         setMessage("Username not found. Please register first.");
         return;
       }
-
+  
       const user = users[0];
-
+  
       if (user.password !== formData.password) {
         setMessage("Incorrect password. Please try again.");
         return;
       }
-
+  
       setMessage("Login successful! Redirecting...");
       setTimeout(() => {
         navigate("/dashboard", { state: { username: user.username, email: user.email } });
