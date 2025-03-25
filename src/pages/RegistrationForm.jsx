@@ -25,33 +25,11 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-    // Check if username already exists
-    const { data: existingUsernames } = await axios.get(
-      "https://eco-engage-server-1.onrender.com/users",
-      { params: { username: formData.username } }
-    );
+    
 
-    if (existingUsernames.length > 0) {
-      setMessage("Username is already taken. Please choose a different username.");
-      return;
-    }
-
-    // Check if email already exists
-    const { data: existingEmails } = await axios.get(
-      "https://eco-engage-server-1.onrender.com/users",
-      { params: { email: formData.email } }
-    );
-
-    if (existingEmails.length > 0) {
-      setMessage("Email is already registered. Please use a different email.");
-      return;
-    }
-
-    // Proceed with registration
-    const response = await axios.post(
-      "https://eco-engage-server-1.onrender.com/users",
-      formData, // No need to stringify; Axios handles it automatically
-      { headers: { "Content-Type": "application/json" } }
+    const { data } = await axios.post(
+      "https://localhost:8080/api/register/users",
+      formData
     );
 
     if (response.status === 201 || response.status === 200) {
