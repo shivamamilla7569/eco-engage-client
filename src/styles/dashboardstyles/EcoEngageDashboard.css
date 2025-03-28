@@ -1,16 +1,22 @@
-/* General Dashboard Styles */
+/* General Dashboard Layout */
+.dashboard-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Adjust container to fit below navbar */
 .dashboard-container {
   text-align: center;
   background: linear-gradient(to right, #39e75f, #ffffff);
-  min-height: 100vh;
-  height: 100vh;
-  padding: 40px;
+  height: calc(100vh - 60px); /* Adjust height to fit below navbar */
+  padding: 80px 20px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
   width: 100vw;
+  overflow: auto;
 }
 
 /* Title & Subtitle */
