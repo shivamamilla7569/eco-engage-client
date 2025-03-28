@@ -16,32 +16,18 @@ const LoginPage = () => {
     e.preventDefault();
   
     try {
-      const response = await axios.get(
-        `https://localhost:8080/api/login/users`,
-        { params: { username: formData.username } } // Axios way to pass query params
-      );
-  
-      const users = response.data; // Axios auto-parses JSON
-  
-      if (users.length === 0) {
-        setMessage("Username not found. Please register first.");
-        return;
-      }
-  
-      const user = users[0];
-  
-      if (user.password !== formData.password) {
-        setMessage("Incorrect password. Please try again.");
-        return;
-      }
+      const response = await axios.post(
+        `http://localhost:8080/api/users/login`,
+        formData // Axios way to pass query params
+      );      
   
       setMessage("Login successful! Redirecting...");
       setTimeout(() => {
-        navigate("/dashboard", { state: { username: user.username, email: user.email } });
+        navigate("/dashboard");
       }, 1500);
     } catch (error) {
       setMessage("An error occurred. Please try again.");
-      console.error("Error:", error);
+      console.log("Error:", error);
     }
   };
 
