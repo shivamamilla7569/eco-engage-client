@@ -15,6 +15,9 @@ import EcoFriendlyTransport from './pages/EcoFriendlyTransport';
 import ElectricVehicles from './pages/ElectricVehicles';
 import PublicTransport from './pages/PublicTransport';
 import BikingWalking from './pages/BikingWalking';
+import DashboardNavbar from './pages/DashboardNavbar';
+import Profile from './pages/Profile';
+import OpportunityDetails from './pages/OpportunityDetails';
 
 const router = createBrowserRouter([
   {
@@ -59,11 +62,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element:<><EcoEngageDashboard/></>,
+    element:<><DashboardNavbar/><EcoEngageDashboard/></>,
+  },
+  {
+    path: "/profile",
+    element:<><Profile/></>,
   },
   {
     path: "/hub",
     element:<><EnvironmentalAwareness/></>,
+  },
+  {
+    path: "/opportunity/:id",
+    element: <OpportunityDetails/>,
   },
   {
     path: "/services",
