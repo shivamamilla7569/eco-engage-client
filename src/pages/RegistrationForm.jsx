@@ -4,8 +4,8 @@ import "../styles/RegistrationForm.css"; // Import CSS file
 import axios from "axios";
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    firstname: "",
+    lastname: "",
     username: "",
     email: "",
     dateOfBirth: "",
@@ -27,12 +27,12 @@ const handleSubmit = async (e) => {
   try {
     
 
-    const { data } = await axios.post(
-      "https://localhost:8080/api/register/users",
+    const response = await axios.post(
+      "http://localhost:8080/api/users/register",
       formData
     );
 
-    if (response.status === 201 || response.status === 200) {
+    if (response.data) {
       setMessage("Registration successful! Redirecting to login...");
       setFormData({
         firstName: "",
@@ -61,8 +61,8 @@ const handleSubmit = async (e) => {
         <h2>Registration Form</h2>
         {message && <p className="message">{message}</p>}
         <form onSubmit={handleSubmit}>
-          <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} className="input-field" required />
-          <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} className="input-field" required />
+          <input type="text" name="firstname" placeholder="First Name" value={formData.firstName} onChange={handleChange} className="input-field" required />
+          <input type="text" name="lastname" placeholder="Last Name" value={formData.lastName} onChange={handleChange} className="input-field" required />
           <input type="text" name="username" placeholder="Username" value={formData.username} onChange={handleChange} className="input-field" required />
           <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} className="input-field" required />
           <input type="date" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} className="input-field" required />
