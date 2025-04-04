@@ -46,7 +46,9 @@ const EcoEngageDashboard = () => {
             <p className="card-description">
               Stay informed about sustainability events.
             </p>
-            <button className="card-button">Read More</button>
+            <button className="card-button" onClick={() => navigate("/calendar")}>
+              View Updates
+            </button>
           </div>
 
           <div className="card">
@@ -55,7 +57,9 @@ const EcoEngageDashboard = () => {
             <p className="card-description">
               Track your contributions to sustainability.
             </p>
-            <button className="card-button">View Progress</button>
+            <button className="card-button" onClick={() => navigate("/impact")}>
+              View Progress
+            </button>
           </div>
         </div>
       </div>

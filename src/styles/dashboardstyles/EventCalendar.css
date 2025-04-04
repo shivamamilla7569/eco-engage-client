@@ -1,0 +1,56 @@
+.event-calendar-container {
+    width: 100vw;
+    height: 100vh;
+    margin: auto;
+    padding: 20px;
+    background: linear-gradient(to right, #39e75f, #ffffff);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  h2 {
+    color: #2c3e50;
+  }
+  
+  .event-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .event-item {
+    background: #f8f9fa;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .event-item h3 {
+    color: #0ea5e9;
+  }
+  
+  .event-item p {
+    margin: 5px 0;
+    color: #34495e;
+  }
+  
+  .rsvp-button {
+    background: #0ea5e9;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .rsvp-button:hover {
+    background: #087bb3;
+  }
+  
+  .rsvp-button.rsvped {
+    background: #2ecc71;
+    cursor: default;
+  }
+  
