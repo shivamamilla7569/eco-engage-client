@@ -1,43 +1,43 @@
 import React, { useState } from "react";
-import "../styles/dashboardstyles/EventCalendar.css"; // Assuming you have a CSS file for styling
+import "../styles/dashboardstyles/EventCalendar.css"; 
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
-const eventsData = [
-  { id: 1, title: "Beach Cleanup", date: "2025-04-12", location: "Hyderabad", time: "8:00 AM - 12:00 PM" },
-  { id: 2, title: "Tree Plantation Drive", date: "2025-04-18", location: "Chennai", time: "9:00 AM - 2:00 PM" },
-  { id: 3, title: "Recycling Awareness Workshop", date: "2025-04-25", location: "Bengaluru", time: "10:00 AM - 3:00 PM" },
+const events = [
+  { date: new Date(2025, 3, 10), title: "Tree Plantation Drive" },
+  { date: new Date(2025, 3, 15), title: "Beach Cleanup" },
+  { date: new Date(2025, 3, 20), title: "Recycling Workshop" },
 ];
 
-const EventCalendar = () => {
-  const [rsvpedEvents, setRsvpedEvents] = useState([]);
+function EventCalendar() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const handleRSVP = (eventId) => {
-    if (!rsvpedEvents.includes(eventId)) {
-      setRsvpedEvents([...rsvpedEvents, eventId]);
-      alert("You have successfully RSVP’d for this event!");
-    }
-  };
+  const filteredEvents = events.filter(
+    (event) =>
+      event.date.toDateString() === selectedDate.toDateString()
+  );
 
   return (
-    <div className="event-calendar-container">
-      <h2>Upcoming Events</h2>
-      <ul className="event-list">
-        {eventsData.map((event) => (
-          <li key={event.id} className="event-item">
-            <h3>{event.title}</h3>
-            <p><strong>Date:</strong> {event.date}</p>
-            <p><strong>Location:</strong> {event.location}</p>
-            <p><strong>Time:</strong> {event.time}</p>
-            <button 
-              className={`rsvp-button ${rsvpedEvents.includes(event.id) ? "rsvped" : ""}`}
-              onClick={() => handleRSVP(event.id)}
-            >
-              {rsvpedEvents.includes(event.id) ? "RSVP’d" : "RSVP"}
-            </button>
-          </li>
-        ))}
-      </ul>
+    <div className="calendar-wrapper">
+      <div className="calendar-left">
+        <h2>Event Calendar</h2>
+        <Calendar onChange={setSelectedDate} value={selectedDate} />
+        
+      </div>
+      <div className="calendar-right">
+        <h2>Events on {selectedDate.toDateString()}</h2>
+        {filteredEvents.length > 0 ? (
+          filteredEvents.map((event, idx) => (
+            <div key={idx} className="event-card">
+              {event.title}
+            </div>
+          ))
+        ) : (
+          <p className="no-events">No events for this date.</p>
+        )}
+      </div>
     </div>
   );
-};
+}
 
 export default EventCalendar;
