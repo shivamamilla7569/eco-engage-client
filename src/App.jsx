@@ -18,6 +18,9 @@ import BikingWalking from './pages/BikingWalking';
 import DashboardNavbar from './pages/DashboardNavbar';
 import Profile from './pages/Profile';
 import OpportunityDetails from './pages/OpportunityDetails';
+import OpportunityForm from './pages/OpportunityForm';
+import UserProfile from './pages/UserProfile';
+import EventCalendar from './pages/EventCalendar';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +46,16 @@ const router = createBrowserRouter([
   {
     path: "/electricvehicles",
     element:<><ElectricVehicles/></>,
+    
+  },  
+  {
+    path: "/calendar",
+    element:<><EventCalendar/></>,
+    
+  },  
+  {
+    path: "/impact",
+    element:<><UserProfile/></>,
     
   },  
   {
@@ -75,6 +88,10 @@ const router = createBrowserRouter([
   {
     path: "/opportunity/:id",
     element: <OpportunityDetails/>,
+  },
+  {
+    path: "/opportunity-form",
+    element: <OpportunityForm/>,
   },
   {
     path: "/services",

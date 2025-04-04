@@ -66,7 +66,8 @@ const OpportunityDetails = () => {
           <p><strong>Schedule:</strong> {opportunity.schedule}</p>
           <p><strong>Contact:</strong> <a href={`mailto:${opportunity.contact}`}>{opportunity.contact}</a></p>
 
-          {/* Filters Section */}
+          <button className="signup-button" onClick={() => navigate(`/opportunity-form`)}>Sign Up</button>
+
           <h3 className="filter-title">Search & Filter Opportunities</h3>
           <div className="filters">
             <input
@@ -96,7 +97,6 @@ const OpportunityDetails = () => {
             />
           </div>
 
-          {/* Filtered Opportunities Display */}
           <div className="opportunities-list">
             {filteredOpportunities.length > 0 ? (
               filteredOpportunities.map((opp) => (
@@ -104,6 +104,9 @@ const OpportunityDetails = () => {
                   <h3>{opp.title}</h3>
                   <p><strong>Location:</strong> {opp.location}</p>
                   <p><strong>Date:</strong> {opp.date}</p>
+                  <button className="register-button" onClick={() => navigate(`/opportunity-form`)}>
+                    Register 
+                  </button>
                 </div>
               ))
             ) : (
@@ -111,9 +114,7 @@ const OpportunityDetails = () => {
             )}
           </div>
 
-          <button className="back-button" onClick={() => navigate("/volunteer")}>
-            Back to Opportunities
-          </button>
+          <button className="back-button" onClick={() => navigate("/volunteer")}>Back to Opportunities</button>
         </>
       ) : (
         <p>Loading...</p>
