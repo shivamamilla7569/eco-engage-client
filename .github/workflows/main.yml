@@ -48,5 +48,8 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            pkill -f "serve -s" || true
+            if [ -f /home/ec2-user/eco-engage/server.pid ]; then
+              kill -9 $(cat /home/ec2-user/eco-engage/server.pid) || true
+            fi
             nohup /usr/bin/serve -s /home/ec2-user/eco-engage -l 3000 > /dev/null 2>&1 &
+            echo $! > /home/ec2-user/eco-engage/server.pid
