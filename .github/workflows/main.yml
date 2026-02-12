@@ -51,5 +51,5 @@ jobs:
             if [ -f /home/ec2-user/eco-engage/server.pid ]; then
               kill -9 $(cat /home/ec2-user/eco-engage/server.pid) || true
             fi
-            nohup /usr/bin/serve -s /home/ec2-user/eco-engage -l 3000 > /dev/null 2>&1 &
+            nohup /usr/bin/serve -s /home/ec2-user/eco-engage -l 5173 > /dev/null 2>&1 &
             echo $! > /home/ec2-user/eco-engage/server.pid
