@@ -23,6 +23,15 @@ jobs:
       - name: Build app
         run: npm run build
 
+      - name: Prepare folder on EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            mkdir -p /home/ec2-user/eco-engage
+
       - name: Copy build to EC2
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -30,7 +39,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "dist/*"
-          target: "~/eco-engage"
+          target: "/home/ec2-user/eco-engage"
 
       - name: Restart static server
         uses: appleboy/ssh-action@v1.0.3
@@ -39,5 +48,5 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            pkill -f "serve -s eco-engage" || true
-            nohup serve -s eco-engage -l 3000 > /dev/null 2>&1 &
+            pkill -f "serve -s" || true
+            nohup /usr/bin/serve -s /home/ec2-user/eco-engage -l 3000 > /dev/null 2>&1 &
