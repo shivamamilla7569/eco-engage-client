@@ -38,8 +38,8 @@ jobs:
           TARGET: /var/www/html/
           SOURCE: dist/
 
-      # 6. Restart Apache
-      - name: Restart Apache
+      # 6. Restart httpd
+      - name: Restart httpd
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.HOST_DNS }}
