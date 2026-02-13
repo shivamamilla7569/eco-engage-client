@@ -1,55 +1,49 @@
-name: React Vite CI/CD to EC2 (No Nginx)
+name: Deploy Vite App to EC2
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      # 1. Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      # 2. Setup Node
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 18
 
-      - name: Install deps
+      # 3. Install dependencies
+      - name: Install dependencies
         run: npm install
 
-      - name: Build app
+      # 4. Build project
+      - name: Build project
         run: npm run build
 
-      - name: Prepare folder on EC2
-        uses: appleboy/ssh-action@v1.0.3
+      # 5. Copy dist folder to EC2
+      - name: Upload build to EC2
+        uses: easingthemes/ssh-deploy@v4
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.HOST_DNS }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          TARGET: /var/www/html
+          SOURCE: dist/
+
+      # 6. Restart Apache
+      - name: Restart Apache
+        uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
+          host: ${{ secrets.HOST_DNS }}
+          username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            mkdir -p /home/ec2-user/eco-engage
-
-      - name: Copy build to EC2
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          source: "dist/*"
-          target: "/home/ec2-user/eco-engage"
-
-      - name: Restart static server
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            if [ -f /home/ec2-user/eco-engage/server.pid ]; then
-              kill -9 $(cat /home/ec2-user/eco-engage/server.pid) || true
-            fi
-            nohup /usr/bin/serve -s /home/ec2-user/eco-engage -l 5173 > /dev/null 2>&1 &
-            echo $! > /home/ec2-user/eco-engage/server.pid
+            sudo systemctl restart apache2
