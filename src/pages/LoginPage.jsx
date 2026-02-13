@@ -17,7 +17,7 @@ const LoginPage = () => {
   
     try {
       const response = await axios.post(
-        `http://localhost:8080/api/users/login`,
+        `http://localhost:8080/api/auth/login`,
         formData // Axios way to pass query params
       );      
   

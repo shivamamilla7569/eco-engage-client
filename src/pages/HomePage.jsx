@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <div className="home-container">
       <div className="home-content">
-        <h1>Welcome to <span className="highlight">Eco Engage</span></h1>
+        <h1>Welcome to Yashwanth & Shiva krishna <span className="highlight">Eco Engage</span></h1>
         <p>
           Join us in making a positive impact on the environment by adopting sustainable practices. 
           Together, we can create a greener future!

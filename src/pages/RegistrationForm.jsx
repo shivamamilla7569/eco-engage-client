@@ -28,7 +28,7 @@ const handleSubmit = async (e) => {
     
 
     const response = await axios.post(
-      "http://localhost:8080/api/users/register",
+      "http://localhost:8080/api/auth/register",
       formData
     );
 
@@ -43,7 +43,7 @@ const handleSubmit = async (e) => {
         gender: "",
         password: "",
       });
-
+      console.log("Registration successful:", response.data);
       // ✅ Redirect Immediately After Registration
       navigate("/login");
     } else {
