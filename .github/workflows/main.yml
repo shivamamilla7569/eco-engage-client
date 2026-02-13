@@ -46,4 +46,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            sudo yum install -y httpd
+            sudo systemctl enable httpd
             sudo systemctl restart httpd
