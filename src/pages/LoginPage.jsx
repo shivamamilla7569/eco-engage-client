@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({ username: "", password: "" });
@@ -14,28 +16,35 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    try {
-      const response = await axios.post(
-        `http://localhost:8080/api/auth/login`,
-        formData // Axios way to pass query params
-      );      
-  
-      setMessage("Login successful! Redirecting...");
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 1500);
-    } catch (error) {
-      setMessage("An error occurred. Please try again.");
-      console.log("Error:", error);
-    }
-  };
+    toast.success("Login successful! 🎉");
+    setTimeout(() => {
+      navigate("/dashboard");
+    }, 1500);
+
+  // try {
+  //   const response = await axios.post(
+  //     "http://localhost:8080/api/auth/login",
+  //     formData
+  //   );
+
+  //   toast.success("Login successful! 🎉");
+
+  //   setTimeout(() => {
+  //     navigate("/dashboard");
+  //   }, 1500);
+
+  // } catch (error) {
+  //   toast.error("Login failed ❌");
+  //   console.log("Error:", error);
+  // }
+};
 
   return (
     <div className="container">
       <div className="login-box">
         <h2 className="title">Login Form</h2>
         {message && <p className="message">{message}</p>}
+          <ToastContainer />
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label className="label">Username</label>
