@@ -2,6 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/RegistrationForm.css"; // Import CSS file
 import axios from "axios";
+
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
     firstname: "",
@@ -23,43 +27,48 @@ const RegistrationForm = () => {
   
 const handleSubmit = async (e) => {
   e.preventDefault();
-
-  try {
+  toast.success("Registration successful! 🎉");
+setTimeout(() => {
+  navigate("/login");
+    }, 1500);
+//   try {
     
 
-    const response = await axios.post(
-      "http://localhost:8080/api/auth/register",
-      formData
-    );
+//     const response = await axios.post(
+//       "http://localhost:8080/api/auth/register",
+//       formData
+//     );
 
-    if (response.data) {
-      setMessage("Registration successful! Redirecting to login...");
-      setFormData({
-        firstName: "",
-        lastName: "",
-        username: "",
-        email: "",
-        dateOfBirth: "",
-        gender: "",
-        password: "",
-      });
-      console.log("Registration successful:", response.data);
-      // ✅ Redirect Immediately After Registration
-      navigate("/login");
-    } else {
-      setMessage("Error registering user.");
-    }
-  } catch (error) {
-    setMessage("An error occurred. Please try again.");
-    console.error("Error:", error);
-  }
-};
+//     if (response.data) {
+//       setMessage("Registration successful! Redirecting to login...");
+//       setFormData({
+//         firstName: "",
+//         lastName: "",
+//         username: "",
+//         email: "",
+//         dateOfBirth: "",
+//         gender: "",
+//         password: "",
+//       });
+//       console.log("Registration successful:", response.data);
+//       // ✅ Redirect Immediately After Registration
+//       navigate("/login");
+//     } else {
+//       setMessage("Error registering user.");
+//     }
+//   } catch (error) {
+//     setMessage("An error occurred. Please try again.");
+//     console.error("Error:", error);
+//   }
+ };
 
   return (
     <div className="container">
       <div className="form-container">
         <h2>Registration Form</h2>
         {message && <p className="message">{message}</p>}
+                  <ToastContainer />
+
         <form onSubmit={handleSubmit}>
           <input type="text" name="firstname" placeholder="First Name" value={formData.firstName} onChange={handleChange} className="input-field" required />
           <input type="text" name="lastname" placeholder="Last Name" value={formData.lastName} onChange={handleChange} className="input-field" required />
